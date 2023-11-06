@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>images rotation program</title>
+</head>
+
+<body>
+
+    <h1>images rotation</h1>
+    <section>
+        <div class="controls">
+            <input id="x" type="number" placeholder="درجة تدوير الصورة"><br><br>
+            <button onclick="rotate()">تغير درجة الزاوية</button>
+            <a>Add my photo :-</a><br><br>
+
+            <input type="file" id="srcph"><br><br>
+
+            <button onclick="fileread()">اضغط لتحميل الصورة</button>
+        </div>
+        <div id="display"></div>
+    </section>
+
+    <p>devolopment and design by : ehab mohamed</p>
+
+</body>
+<style>
+    section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    #display {
+        width: 44%;
+        height: 400px;
+        background-color: blue;
+        overflow: hidden;
+    }
+
+    .im {
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .controls {
+        width: 56%;
+        height: 400px;
+        
+    }
+</style>
+<script>
+
+    let photosrc = document.getElementById('srcph');
+    let dis = document.getElementById('display');
+
+    function fileread() {
+        let rf = new FileReader();
+        rf.onload = function () {
+            dis.innerHTML = `<img class="im" src="${rf.result}">`
+            //dis.style.width = '100px'
+        }
+        rf.readAsDataURL(photosrc.files[0]);
+    }
+
+    function rotate() {
+        let m = document.getElementById('x').value;
+        dis.style.transform = `rotate(${+m + 'deg'})`
+    }
+
+</script>
+
+</html>
